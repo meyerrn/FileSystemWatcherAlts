@@ -117,7 +117,9 @@ namespace FileSystemWatcherAlts.Wrappers
             UnsubscribeFromInternalWatcherEvents();
 
             // 2a. Keeping the current internal "EnableRaisingEvents" value
-            bool currentEnableRaisingEvents = InternalWatcher.EnableRaisingEvents;
+            // unfortunately this does not work (anymore?) because .NET core sets EnableRaisingEvents to false after an error  
+            bool currentEnableRaisingEvents = true;// InternalWatcher.EnableRaisingEvents;
+            
             // 2b. Turning off EnableRaisingEvents to avoid "locking" the watched folder
             InternalWatcher.EnableRaisingEvents = false;
 
