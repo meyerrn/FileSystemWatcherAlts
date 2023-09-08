@@ -229,6 +229,8 @@ namespace FileSystemWatcherAlts.Polling
             }
         }
 
+        public Collection<string> Filters => throw new NotImplementedException();
+
         /// <summary>
         /// Whether the poller should also poll in subdirectories of the directory at Path
         /// </summary>

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace FileSystemWatcherAlts.Utils
@@ -11,6 +12,7 @@ namespace FileSystemWatcherAlts.Utils
 
         public bool EnableRaisingEvents { get; set; }
         public string Filter { get; set; }
+        public Collection<string> Filters { get; } = new(); 
         public bool IncludeSubdirectories { get; set; }
         public int InternalBufferSize { get; set; }
         public NotifyFilters NotifyFilter { get; set; }

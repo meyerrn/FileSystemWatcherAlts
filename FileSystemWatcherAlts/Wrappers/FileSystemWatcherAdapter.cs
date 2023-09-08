@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace FileSystemWatcherAlts.Wrappers
@@ -80,6 +81,8 @@ namespace FileSystemWatcherAlts.Wrappers
                 InternalWatcher.Filter = value;
             }
         }
+
+        public Collection<string> Filters => InternalWatcher.Filters;
 
         public bool IncludeSubdirectories
         {
@@ -211,9 +214,11 @@ namespace FileSystemWatcherAlts.Wrappers
                 Path = InternalWatcher.Path,
                 IncludeSubdirectories = InternalWatcher.IncludeSubdirectories,
                 InternalBufferSize = InternalWatcher.InternalBufferSize,
-                Filter = InternalWatcher.Filter,
-                EnableRaisingEvents = InternalWatcher.EnableRaisingEvents
             };
+            foreach (var filter in InternalWatcher.Filters)
+                clonedEncapsWatcher.Filters.Add(filter);
+            clonedEncapsWatcher.EnableRaisingEvents = InternalWatcher.EnableRaisingEvents;
+            
             return new FileSystemWatcherAdapter(clonedEncapsWatcher);
         }
 

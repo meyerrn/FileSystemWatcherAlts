@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace FileSystemWatcherAlts.Wrappers
@@ -61,6 +62,8 @@ namespace FileSystemWatcherAlts.Wrappers
                 InternalWatcher.Filter = value;
             }
         }
+
+        public Collection<string> Filters => InternalWatcher.Filters;
 
         public virtual bool IncludeSubdirectories
         {
